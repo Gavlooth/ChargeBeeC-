@@ -34,6 +34,13 @@ namespace ChargeBeeSimpleInformationRetriever
                    apiKey = "test_CAoGvnUyYyRVr09uj2NUhZm0l6YQewm0";
             ChargeBeeData MyBee = new ChargeBeeData(name, apiKey);
             MyBee.GetClientInfo();
+            CustomerList.DataSource = new BindingSource(MyBee.CustomerList,null) ;
+            CustomerList.DisplayMember = "Value";
+            CustomerList.ValueMember = "Key";
+
+
+
+
 
 
         }

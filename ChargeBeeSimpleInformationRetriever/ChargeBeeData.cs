@@ -13,24 +13,19 @@ namespace ChargeBeeSimpleInformationRetriever
 {
     public class ChargeBeeData
     {
-        private Dictionary<string, string> customerList = null;
-        //  string site;
-        //  string apiKey;
-        /* string serialize_customer;
-         List<string> customerList;
-       public List<string> CustomerList
+        private Dictionary<string, string> customerList = new Dictionary<string, string>();
+
+       public Dictionary<string, string>CustomerList
          {
              get { return this.customerList; }
-         }*/
+         }
 
 
         public ChargeBeeData(string site, string apiKey)
         {
             if (site == null || apiKey == null)
                 throw new ArgumentNullException("Please provide the site name AND the api key");
-
-            // this.site = site;
-            //this.apiKey = apiKey;
+ 
             try
             {
                 ApiConfig.Configure(site, apiKey);
@@ -58,13 +53,13 @@ namespace ChargeBeeSimpleInformationRetriever
 
 
             }
-            catch (InvalidRequestException ex)
+            catch (InvalidRequestException)
             {
                 MessageBox.Show("There was made and invalid request to recieve data. Failing...", "InvalidRequestException");
 
 
             }
-            catch (OperationFailedException ex)
+            catch (OperationFailedException)
             {
                 MessageBox.Show("Something went wrong when trying to reicieve data from your account. Failing... (not your fault)", "OperationFailedException");
             }
@@ -76,24 +71,28 @@ namespace ChargeBeeSimpleInformationRetriever
             }
 
             try
+
             {
+                
                 foreach (ListResult.Entry entry in result.List)
                 {
 
+                    if (entry.Customer.LastName == null || entry.Customer.FirstName == null)
+                        MessageBox.Show("it is iempty");
+                    else
                     customerList.Add(entry.Customer.Id, entry.Customer.LastName + ", " + entry.Customer.FirstName);
-                    MessageBox.Show(JsonConvert.SerializeObject(entry));
+                   
+                    //MessageBox.Show(JsonConvert.SerializeObject(entry));
 
                 }
 
-                MessageBox.Show("data", skata);
-            }
+             }
             catch (Exception e)
             {
-                MessageBox.Show("error: ", e.Message);
-
+                MessageBox.Show(e.Message, "error: ");
             }
 
-
+            
         }
 
 

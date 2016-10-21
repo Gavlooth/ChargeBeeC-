@@ -43,7 +43,7 @@
             this.CustomerList.ItemHeight = 20;
             this.CustomerList.Location = new System.Drawing.Point(273, 12);
             this.CustomerList.Name = "CustomerList";
-            this.CustomerList.Size = new System.Drawing.Size(223, 504);
+            this.CustomerList.Size = new System.Drawing.Size(508, 504);
             this.CustomerList.TabIndex = 0;
             // 
             // loadData
@@ -101,7 +101,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(507, 533);
+            this.ClientSize = new System.Drawing.Size(812, 533);
             this.Controls.Add(this.textBox2);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.button4);
