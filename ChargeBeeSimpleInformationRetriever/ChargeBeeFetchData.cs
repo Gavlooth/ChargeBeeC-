@@ -11,17 +11,23 @@ using Newtonsoft.Json;
 
 namespace ChargeBeeSimpleInformationRetriever
 {
-    public class ChargeBeeData
+    public class ChargeBeeFetchData
     {
         private Dictionary<string, string> customerList = new Dictionary<string, string>();
+        private ListResult result = null;
 
-       public Dictionary<string, string>CustomerList
+
+        public Dictionary<string, string>CustomerList
          {
              get { return this.customerList; }
          }
+        public ListResult Data
+        {
+          get  { return this.result; }
+        }
 
 
-        public ChargeBeeData(string site, string apiKey)
+        public ChargeBeeFetchData(string site, string apiKey)
         {
             if (site == null || apiKey == null)
                 throw new ArgumentNullException("Please provide the site name AND the api key");
@@ -33,7 +39,7 @@ namespace ChargeBeeSimpleInformationRetriever
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Failed for reason: ", ex.Data.Values.ToString());
+                MessageBox.Show(ex.Message,"Failed for reason: ");
 
             }
 
@@ -43,7 +49,6 @@ namespace ChargeBeeSimpleInformationRetriever
         public void GetClientInfo()
         {
 
-            ListResult result = null;
 
             try
             {
@@ -66,7 +71,7 @@ namespace ChargeBeeSimpleInformationRetriever
 
             catch (Exception ex)
             {
-                MessageBox.Show("Failed for reason: ", ex.Data.Values.ToString());
+                MessageBox.Show("Failed for reason: ", ex.Message );
 
             }
 
@@ -82,7 +87,6 @@ namespace ChargeBeeSimpleInformationRetriever
                     else
                     customerList.Add(entry.Customer.Id, entry.Customer.LastName + ", " + entry.Customer.FirstName);
                    
-                    //MessageBox.Show(JsonConvert.SerializeObject(entry));
 
                 }
 
